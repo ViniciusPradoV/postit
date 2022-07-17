@@ -22,7 +22,6 @@ export class LoginPage {
 
   }
 
-
   public async login(): Promise<void> {
     if(!this.canLogin()) return;
 
