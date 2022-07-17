@@ -26,13 +26,13 @@ export class HelperService {
           toast.present();
     }
 
-    public async showAlert(header: string): Promise<void>{
+    public async showAlert(header: string, text: string): Promise<void>{
 
         const alert = await this.alertController.create({
             header: header,
             buttons:[
               {
-                text:'OK',
+                text: text,
                 handler: () => {console.log('Ok!')}
               }
             ]

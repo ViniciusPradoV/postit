@@ -33,7 +33,7 @@ export class LoginPage {
     
 
     // Alert
-    await this.helper.showAlert("Hello World");
+    await this.helper.showAlert("Hello World", "OK");
   }
 
   public canLogin(): boolean {
