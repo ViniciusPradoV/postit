@@ -9,6 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 
 import {AtomSpinnerModule, SelfBuildingSquareSpinnerModule} from 'angular-epic-spinners'
+import { LogoComponent } from 'src/app/components/logo/logo.component';
   
 @NgModule({
   imports: [
@@ -19,6 +20,9 @@ import {AtomSpinnerModule, SelfBuildingSquareSpinnerModule} from 'angular-epic-s
     AtomSpinnerModule,
     SelfBuildingSquareSpinnerModule
   ],
-  declarations: [LoginPage]
+  declarations: [
+    LoginPage,
+    LogoComponent,
+  ]
 })
 export class LoginPageModule {}

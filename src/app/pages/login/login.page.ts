@@ -57,4 +57,9 @@ export class LoginPage {
     return false;
   }
 
+  public logoClick($event): void {
+    console.log($event);
+  }
+
+
 }

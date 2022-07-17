@@ -4,7 +4,7 @@
   <img class="detail" src="assets\background.svg">
 
   <div class="container">
-    <img src="assets\imgs\LOGO.svg">
+    <app-logo [full]="false" src="assets\imgs\LOGO.svg" (onClick)="logoClick($event)"></app-logo>
 
     <div class="container--inputs">
       <span>E-mail</span>
@@ -13,7 +13,7 @@
       <input type="password" [(ngModel)]="loginPayload.password">
     </div>
 
-    <ion-button  [class.disabled]="!canLogin()" class="disabled" (click)="login()"> 
+    <ion-button class="button"  [class.disabled]="!canLogin()" (click)="login()"> 
       {{ isLoading ? 'carregando...' : 'confirmar' }}
       <app-self-building-square-spinner 
         *ngIf="isLoading"
