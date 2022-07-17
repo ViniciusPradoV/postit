@@ -8,12 +8,16 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 
+import {AtomSpinnerModule, SelfBuildingSquareSpinnerModule} from 'angular-epic-spinners'
+  
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    AtomSpinnerModule,
+    SelfBuildingSquareSpinnerModule
   ],
   declarations: [LoginPage]
 })

@@ -28,6 +28,10 @@
     img {
       width: 22%;
       height: 30%;
+
+      @media screen and (min-width: 768px){
+        width: 15%;
+      }
     }
   
     &--inputs {
@@ -77,5 +81,10 @@
         color: #2D9FDB;
         text-decoration: none;
       }
+    }
+
+    .disabled{
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
