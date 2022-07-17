@@ -24,6 +24,8 @@ export class LoginPage {
 
 
   public async login(): Promise<void> {
+    if(!this.canLogin()) return;
+
     this.isLoading = true;
     console.log(this.loginPayload);
 
@@ -33,7 +35,16 @@ export class LoginPage {
     
 
     // Alert
-    await this.helper.showAlert("Hello World", "OK");
+    await this.helper.showAlert("Hello World", [
+      {
+        text: 'OK',
+        handler: () => console.log('Ok!'),
+      },
+      {
+        text: 'Outro',
+        handler: () => console.log('Outro'),
+      }
+    ]);
   }
 
   public canLogin(): boolean {
