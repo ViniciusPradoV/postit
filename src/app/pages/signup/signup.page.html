@@ -1,0 +1,31 @@
+<div class="signup">
+  <img class="background" src="assets\imgs\quadrados.png">
+
+  <img class="detail" src="assets\background.svg">
+
+  <div class="container">
+    <div class="container--images">
+    <img routerLink="/login" class="return" src="assets\imgs\icon_return.svg" alt="">
+
+    <app-logo src="assets\imgs\LOGO.svg" (onClick)="logoClick($event)"></app-logo>
+    </div>
+    
+
+    <div class="container--inputs">
+      <span>Nome Completo*</span>
+      <input (keydown.enter)="email.focus()" class="input" type="nome">
+      <span>E-mail*</span>
+      <input #email (keydown.enter)="emailAgain.focus()" class="input" type="email">
+      <span>Confirme o E-mail*</span>
+      <input #emailAgain (keydown.enter)="password.focus()" class="input" type="confirmation">
+      <span>Senha*</span>
+      <input #password (keydown.enter)="passwordAgain.focus()" class="input" type="confirmation">
+      <span>Confirme a senha*</span>
+      <input #passwordAgain class="input" type="confirmation">
+    </div>
+
+    <p>*Campos obrigatórios
+    </p>
+    <p>Ao registrar-me, concordo com os termos de uso a Política de Privacidade do Aplicativo</p>
+  </div>
+</div>

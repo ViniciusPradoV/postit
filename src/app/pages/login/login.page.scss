@@ -4,73 +4,71 @@
   object-fit: cover;
 }
   
-  .detail {
-    position: absolute;
-    top: -20px;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.3;
-  }
+.detail {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.3;
+}
 
-  app-logo {
-    width: 22%;
-    height: 30%;
+app-logo {
+  width: 22%;
+  height: 30%;
 
-    @media screen and (min-width: 1000px) {
-      width: 10%;
-    }
+  @media screen and (min-width: 1000px) {
+    width: 10%;
   }
+}
 
   
-  .container {
-    z-index: 2;
+.container {
+  z-index: 2;
   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: #FFFFFF;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  height: 75vh;
+  transform: translateY(-60px);
+  
+  &--inputs {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 80%;
   
-    background-color: #FFFFFF;
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    height: 75vh;
-    transform: translateY(-60px);
-  
-    &--inputs {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-  
-      span {
-        color: #707070;
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin-bottom: 0.5rem;
-        font-style: italic;
-        font-size: 0.95rem;
-        padding-left: 1rem;
-      }
-  
-    }
-  
-    p {
+    span {
       color: #707070;
-      margin-top: 1.5rem;
-      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+      font-size: 0.95rem;
+      padding-left: 1rem;
+    }
   
-      a {
-        color: #2D9FDB;
-        text-decoration: none;
-      }
+  }
+  
+  p {
+    color: #707070;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+  
+    a {
+      color: #2D9FDB;
+      text-decoration: none;
     }
   }
+}
   
-  .disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  app-self-building-square-spinner {
-
-    margin-left: 2rem;
-  }
+ .disabled {
+   opacity: 0.5;
+   pointer-events: none;
+ }
+ app-self-building-square-spinner {
+   margin-left: 2rem;
+ }
