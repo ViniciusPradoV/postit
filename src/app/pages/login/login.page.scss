@@ -1,9 +1,8 @@
 .background {
-    display: block;
-    height: 35vh;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  width: 100%;
+  height: 35vh;
+  object-fit: cover;
+}
   
   .detail {
     position: absolute;
