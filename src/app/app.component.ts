@@ -19,14 +19,13 @@ export class AppComponent implements OnDestroy {
           .subscribe((route: NavigationEnd)=> {
             console.log(route.url);
 
-            if(this.routesWithoutNavbar.includes(route.url)) return;
-
-            this.canShowNavbar = true;
+            if(this.routesWithNavbar.includes(route.url)) this.canShowNavbar = true;
+            
     })
   }
 
   public canShowNavbar: boolean =  false;
-  public routesWithoutNavbar: string[] = ['/login'];
+  public routesWithNavbar: string[] = ['/home','/feed','profile'];
 
   public routeSubscription: Subscription;
 
