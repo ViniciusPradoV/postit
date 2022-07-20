@@ -14,7 +14,7 @@ export class LoginPage {
     private readonly helper: HelperService,
     ) { }
 
-  public isLoading: boolean = false;
+  public isLoading: boolean = true;
 
   public loginPayload: LoginPayload = {
     email:'',

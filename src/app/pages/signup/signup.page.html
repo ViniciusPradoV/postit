@@ -12,25 +12,37 @@
     
 
     <div class="container--inputs">
-      <span>Nome Completo*</span>
-      <input (keydown.enter)="email.focus()" class="input" type="nome">
-      <span>E-mail*</span>
-      <input #email (keydown.enter)="emailAgain.focus()" class="input" type="email">
-      <span>Confirme o E-mail*</span>
-      <input #emailAgain (keydown.enter)="password.focus()" class="input" type="confirmation">
-      <span>Senha*</span>
-      <input #password (keydown.enter)="passwordAgain.focus()" class="input" type="confirmation">
-      <span>Confirme a senha*</span>
-      <input #passwordAgain class="input" type="confirmation">
+      <span class="field">Nome Completo*</span>
+      <input (keydown.enter)="email.focus()" class="input" type="text" [(ngModel)]="signupPayload.nome">
+      <span class="warning" [class.hidden]="isNameEmpty()"> Este campo é obrigatório! </span>
+
+      <span class="field">E-mail*</span>
+      <input #email (keydown.enter)="emailAgain.focus()" class="input" type="text" [(ngModel)]="signupPayload.email">
+      <span class="warning" [class.hidden]="isEmailValid()"> Digite um email válido! </span>
+
+      <span class="field">Confirme o E-mail*</span>
+      <input #emailAgain (keydown.enter)="password.focus()" class="input" type="text" [(ngModel)]="signupPayload.emailConfirmation">
+      <span class="warning" [class.hidden]="isEmailEqual()"> E-mail deve ser idêntico ao digitado no campo anterior! </span>
+
+      <span class="field">Senha*</span>
+      <input #password (keydown.enter)="passwordAgain.focus()" class="input" type="password" [(ngModel)]="signupPayload.password">
+      <span class="warning" [class.hidden]="passwordHasMinLength()"> Senha necessita ao menos 7 dígitos! </span>
+
+      <span class="field">Confirme a senha*</span>
+      <input #passwordAgain class="input" type="password" [(ngModel)]="signupPayload.passwordConfirmation">
+      <span class="warning" [class.hidden]="isPasswordEqual()"> Senha deve ser idêntica à digitada no campo anterior! </span>
     </div>
 
-    <p>*Campos obrigatórios
-    </p>
-    <p>Ao registrar-me, concordo com os termos de uso a Política de Privacidade do Aplicativo</p>
-
-    <ion-button class="button" > 
+    <div class="container--p">
+      <p>*Campos obrigatórios
+      </p>
+      <p>Ao registrar-me, concordo com os termos de uso e a Política de Privacidade do Aplicativo</p>
+    </div>
+    
+    <ion-button class="button" [class.disabled]="!canCreateAccount()" (click)="createAccount()" > 
       {{ isLoading ? 'carregando...' : 'Criar conta' }}
-      <app-self-building-square-spinner 
+      <app-self-building-square-spinner
+        *ngIf="isLoading" 
         [animationDuration]="6000"
         [size]="40"
         [color]="'#ffffff'"
