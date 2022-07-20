@@ -27,5 +27,14 @@
     <p>*Campos obrigatórios
     </p>
     <p>Ao registrar-me, concordo com os termos de uso a Política de Privacidade do Aplicativo</p>
+
+    <ion-button class="button" > 
+      {{ isLoading ? 'carregando...' : 'Criar conta' }}
+      <app-self-building-square-spinner 
+        [animationDuration]="6000"
+        [size]="40"
+        [color]="'#ffffff'"
+     ></app-self-building-square-spinner>
+    </ion-button>
   </div>
 </div>

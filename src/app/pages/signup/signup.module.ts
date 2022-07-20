@@ -8,13 +8,15 @@ import { SignupPageRoutingModule } from './signup-routing.module';
 
 import { SignupPage } from './signup.page';
 import { LogoComponent } from 'src/app/components/logo/logo.component';
+import { SelfBuildingSquareSpinnerModule } from 'angular-epic-spinners';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SignupPageRoutingModule
+    SignupPageRoutingModule,
+    SelfBuildingSquareSpinnerModule
   ],
   declarations: [
     SignupPage,

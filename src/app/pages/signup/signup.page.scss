@@ -73,10 +73,13 @@
     }
 
     p {
-        font-style: italic;
         font-size: 0.8rem;
         width: 80%;
         
+      }
+
+      app-self-building-square-spinner {
+        margin-left: 2rem;
       }
    
 }

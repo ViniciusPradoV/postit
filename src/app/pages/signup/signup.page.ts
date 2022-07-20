@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SignupPayload } from 'src/app/models/payloads/signup.payload';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPage {
 
-  constructor() { }
+  constructor(private readonly helper: HelperService) { }
+
+  public signupPayload: SignupPayload = {
+    nome:'',
+    email: '',
+    password: '',
+    
+  }
 
   public logoClick($event): void {
     console.log($event);
