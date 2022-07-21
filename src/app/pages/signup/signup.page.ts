@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupPayload } from 'src/app/models/payloads/signup.payload';
 import { HelperService } from 'src/app/services/helper.service';
+import { goUp } from './signup.animations';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
+  animations: [goUp]
 })
 export class SignupPage {
 

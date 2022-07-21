@@ -10,6 +10,7 @@ import { LoginPage } from './login.page';
 
 import {AtomSpinnerModule, SelfBuildingSquareSpinnerModule} from 'angular-epic-spinners'
 import { LogoComponent } from 'src/app/components/logo/logo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { LogoComponent } from 'src/app/components/logo/logo.component';
     IonicModule,
     LoginPageRoutingModule,
     AtomSpinnerModule,
-    SelfBuildingSquareSpinnerModule
+    SelfBuildingSquareSpinnerModule,
+    
   ],
   declarations: [
     LoginPage,

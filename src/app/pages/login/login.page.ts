@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
 import { HelperService } from 'src/app/services/helper.service';
+import { goDown } from './login.animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  animations: [goDown]
 })
 export class LoginPage {
 
@@ -14,7 +16,7 @@ export class LoginPage {
     private readonly helper: HelperService,
     ) { }
 
-  public isLoading: boolean = true;
+  public isLoading: boolean = false;
 
   public loginPayload: LoginPayload = {
     email:'',

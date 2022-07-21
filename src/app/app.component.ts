@@ -1,17 +1,22 @@
 import { Component, OnDestroy } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ChildrenOutletContexts, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { container } from './app.animations';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
+  animations: [
+    container]
 })
 export class AppComponent implements OnDestroy {
   constructor(
     private readonly router: Router,
+    private contexts: ChildrenOutletContexts
   ) {
     console.log(router);
     router.events
@@ -32,4 +37,11 @@ export class AppComponent implements OnDestroy {
   public ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
   }
+
+  getRouteAnimationData() {
+
+    console.log("getRouteAnimationData()")
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+  }
+  
 }
