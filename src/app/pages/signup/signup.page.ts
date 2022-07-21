@@ -14,7 +14,7 @@ export class SignupPage {
   constructor(private readonly helper: HelperService) { }
 
   public signupPayload: SignupPayload = {
-    nome:'',
+    nome: '',
     email: '',
     emailConfirmation: '',
     password: '',
@@ -23,48 +23,53 @@ export class SignupPage {
   }
 
   public isLoading: boolean = false;
+  public isNameEmpty: boolean = true;
+  public isEmailValid: boolean = true;
+  public isPasswordMinLen: boolean = true;
+  
+
 
   public logoClick($event): void {
     console.log($event);
   }
 
-  public isNameEmpty(): boolean{
+  public checkIsNameEmpty(){
 
-      if(this.signupPayload.nome.length > 0) return true;
-
-      return false;
+      if(this.signupPayload.nome.length > 0) this.isNameEmpty = true;
+      else this.isNameEmpty = false;
   }
-  public isEmailEqual(): boolean {
-    if(this.signupPayload.email === this.signupPayload.emailConfirmation) return true;
-
-    return false;
+  public checkIsEmailEqual(): boolean{
+    if(this.signupPayload.email === this.signupPayload.emailConfirmation){
+      console.log(`checkIsEmailEqual: ${this.signupPayload.emailConfirmation}`);
+      console.log(`checkIsEmailEqual: ${this.signupPayload.email}`);
+       return true;
+      }
+    else return false;
   }
 
-  public isPasswordEqual(): boolean {
+  public checkIsPasswordEqual(): boolean {
     if(this.signupPayload.password === this.signupPayload.passwordConfirmation) return true;
-
-    return false;
+    else return false;
   }
 
-  public isEmailValid(){
+  public checkIsEmailValid(){
 
-    return this.helper.isEmailValid(this.signupPayload.email);
+    this.isEmailValid = this.helper.isEmailValid(this.signupPayload.email);
   }
 
   public passwordHasMinLength(){
 
-    if(this.signupPayload.password.length > 6) return true;
-
-    return false;
+    if(this.signupPayload.password.length > 6) this.isPasswordMinLen= true;
+    else this.isPasswordMinLen = false;
   }
 
   public canCreateAccount(){
 
-    if(this.isEmailEqual() && 
-      this.isEmailValid() && 
-      this.isPasswordEqual() && 
-      this.passwordHasMinLength() &&
-      this.isNameEmpty()) return true;
+    if(this.checkIsEmailEqual() && 
+      this.isEmailValid && 
+      this.checkIsPasswordEqual() && 
+      this.isPasswordMinLen &&
+      this.isNameEmpty) return true;
 
       return false;
   }

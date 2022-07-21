@@ -39,8 +39,6 @@ export class AppComponent implements OnDestroy {
   }
 
   getRouteAnimationData() {
-
-    console.log("getRouteAnimationData()")
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
   

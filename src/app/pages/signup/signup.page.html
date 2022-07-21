@@ -13,24 +13,46 @@
 
     <div class="container--inputs">
       <span class="field">Nome Completo*</span>
-      <input (keydown.enter)="email.focus()" class="input" type="text" [(ngModel)]="signupPayload.nome">
-      <span class="warning" [class.hidden]="isNameEmpty()"> Este campo é obrigatório! </span>
+      <input (keydown.enter)="email.focus()" 
+      class="input"
+      type="text"
+      [(ngModel)]="signupPayload.nome"
+      (ngModelChange)="checkIsNameEmpty()"
+      >
+      <span class="warning" [class.hidden]="isNameEmpty"> Este campo é obrigatório! </span>
 
       <span class="field">E-mail*</span>
-      <input #email (keydown.enter)="emailAgain.focus()" class="input" type="text" [(ngModel)]="signupPayload.email">
-      <span class="warning" [class.hidden]="isEmailValid()"> Digite um email válido! </span>
+      <input #email (keydown.enter)="emailAgain.focus()" 
+      class="input" 
+      type="text" 
+      [(ngModel)]="signupPayload.email"
+      (ngModelChange)="checkIsEmailValid()">
+      <span class="warning" [class.hidden]="isEmailValid"> Digite um email válido! </span>
 
       <span class="field">Confirme o E-mail*</span>
-      <input #emailAgain (keydown.enter)="password.focus()" class="input" type="text" [(ngModel)]="signupPayload.emailConfirmation">
-      <span class="warning" [class.hidden]="isEmailEqual()"> E-mail deve ser idêntico ao digitado no campo anterior! </span>
+      <input #emailAgain 
+      (keydown.enter)="password.focus()" 
+      class="input" 
+      type="text"
+      [(ngModel)]="signupPayload.emailConfirmation">
+      <span class="warning" [class.hidden]="checkIsEmailEqual()"> E-mail deve ser idêntico ao digitado no campo anterior! </span>
 
       <span class="field">Senha*</span>
-      <input #password (keydown.enter)="passwordAgain.focus()" class="input" type="password" [(ngModel)]="signupPayload.password">
-      <span class="warning" [class.hidden]="passwordHasMinLength()"> Senha necessita ao menos 7 dígitos! </span>
+      <input #password 
+      (keydown.enter)="passwordAgain.focus()" 
+      class="input" 
+      type="password" 
+      [(ngModel)]="signupPayload.password"
+      (ngModelChange)="passwordHasMinLength()">
+      <span class="warning" [class.hidden]="isPasswordMinLen"> Senha necessita ao menos 7 dígitos! </span>
 
       <span class="field">Confirme a senha*</span>
-      <input #passwordAgain class="input" type="password" [(ngModel)]="signupPayload.passwordConfirmation">
-      <span class="warning" [class.hidden]="isPasswordEqual()"> Senha deve ser idêntica à digitada no campo anterior! </span>
+      <input #passwordAgain 
+      class="input" 
+      type="password" 
+      [(ngModel)]="signupPayload.passwordConfirmation"
+      (ngModelChange)="checkIsPasswordEqual()">
+      <span class="warning" [class.hidden]="checkIsPasswordEqual()"> Senha deve ser idêntica à digitada no campo anterior! </span>
     </div>
 
     <div class="container--p">
