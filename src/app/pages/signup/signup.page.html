@@ -17,16 +17,16 @@
       class="input"
       type="text"
       [(ngModel)]="signupPayload.nome"
-      (ngModelChange)="checkIsNameEmpty()"
+      (ngModelChange)="setNameWarning()"
       >
-      <span class="warning" [class.hidden]="isNameEmpty"> Este campo é obrigatório! </span>
+      <span class="warning" [class.hidden]="isNameNotEmpty"> Este campo é obrigatório! </span>
 
       <span class="field">E-mail*</span>
       <input #email (keydown.enter)="emailAgain.focus()" 
       class="input" 
       type="text" 
       [(ngModel)]="signupPayload.email"
-      (ngModelChange)="checkIsEmailValid()">
+      (ngModelChange)="setEmailWarning()">
       <span class="warning" [class.hidden]="isEmailValid"> Digite um email válido! </span>
 
       <span class="field">Confirme o E-mail*</span>
@@ -43,7 +43,7 @@
       class="input" 
       type="password" 
       [(ngModel)]="signupPayload.password"
-      (ngModelChange)="passwordHasMinLength()">
+      (ngModelChange)="setPasswordWarning()">
       <span class="warning" [class.hidden]="isPasswordMinLen"> Senha necessita ao menos 7 dígitos! </span>
 
       <span class="field">Confirme a senha*</span>

@@ -22,8 +22,9 @@ export class SignupPage {
     
   }
 
+
   public isLoading: boolean = false;
-  public isNameEmpty: boolean = true;
+  public isNameNotEmpty: boolean = true;
   public isEmailValid: boolean = true;
   public isPasswordMinLen: boolean = true;
   
@@ -33,44 +34,55 @@ export class SignupPage {
     console.log($event);
   }
 
-  public checkIsNameEmpty(){
+  public checkIsNameNotEmpty(): boolean {
 
-      if(this.signupPayload.nome.length > 0) this.isNameEmpty = true;
-      else this.isNameEmpty = false;
+      return this.signupPayload.nome.length > 0 
+   
   }
-  public checkIsEmailEqual(): boolean{
-    if(this.signupPayload.email === this.signupPayload.emailConfirmation){
-      console.log(`checkIsEmailEqual: ${this.signupPayload.emailConfirmation}`);
-      console.log(`checkIsEmailEqual: ${this.signupPayload.email}`);
-       return true;
-      }
-    else return false;
-  }
+  public checkIsEmailEqual(): boolean {
 
+    return this.signupPayload.email === this.signupPayload.emailConfirmation
+
+  }
+    
   public checkIsPasswordEqual(): boolean {
-    if(this.signupPayload.password === this.signupPayload.passwordConfirmation) return true;
-    else return false;
+
+    return this.signupPayload.password === this.signupPayload.passwordConfirmation;
   }
 
-  public checkIsEmailValid(){
+  public checkIsEmailValid(): boolean{
 
-    this.isEmailValid = this.helper.isEmailValid(this.signupPayload.email);
+    return this.helper.isEmailValid(this.signupPayload.email);
   }
 
-  public passwordHasMinLength(){
+  public passwordHasMinLength(): boolean{
 
-    if(this.signupPayload.password.length > 6) this.isPasswordMinLen= true;
+    return this.signupPayload.password.length > 6
+  }
+
+  public setNameWarning(){
+    if(this.checkIsNameNotEmpty()) this.isNameNotEmpty = true;
+    else this.isNameNotEmpty = false;
+  }
+
+  public setEmailWarning(){
+    if(this.checkIsEmailValid()) this.isEmailValid = true;
+    else this.isEmailValid = false;
+  }
+
+  public setPasswordWarning(){
+    if(this.passwordHasMinLength()) this.isPasswordMinLen = true;
     else this.isPasswordMinLen = false;
   }
 
   public canCreateAccount(){
 
     if(this.checkIsEmailEqual() && 
-      this.isEmailValid && 
+      this.checkIsEmailValid() && 
       this.checkIsPasswordEqual() && 
-      this.isPasswordMinLen &&
-      this.isNameEmpty) return true;
-
+      this.passwordHasMinLength() &&
+      this.checkIsNameNotEmpty()) return true;
+      
       return false;
   }
 
@@ -78,7 +90,6 @@ export class SignupPage {
     if(!this.canCreateAccount()) return;
 
     this.isLoading = true;
-    console.log(this.signupPayload);
 
     await this.helper.showToast('Carregando...');
   }
