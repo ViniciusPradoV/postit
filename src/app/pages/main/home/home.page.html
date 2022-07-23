@@ -1,31 +1,35 @@
 <div class="home">
+
   <header>
-    <img src="assets\imgs\LOGO.svg" alt="Logo">
+    <img src="assets/imgs/LOGO.svg" alt="Logo">
   </header>
+
   <main>
-    <ng-container *ngFor ="let post of postItArray">
-      <app-postit (postItSelected)="printPostIt($event)" [postIt]="post"></app-postit>
+    <ng-container *ngFor="let post of postItArray">
+      <app-postit (postItSelected)="printPostIt($event)" 
+                  [postIt]="post"
+                  (click)="openPostModal(post)"></app-postit>
     </ng-container>
   </main>
 
   <div class="home--new-postit">
     <div class="home--new-postit--item" 
-    (click)="cardClick('#F77D60')"
-    [style.background-color]="postItColorEnum.RED"></div>
+        (click)="openNewPostModal(postItColorEnum.RED)"
+        [style.background-color]="postItColorEnum.RED"></div>
     <div class="home--new-postit--item" 
-    (click)="cardClick('#FEB196')"
-    [style.background-color]="postItColorEnum.ROSE"></div>
+        (click)="openNewPostModal(postItColorEnum.PINK)"
+        [style.background-color]="postItColorEnum.PINK"></div>
     <div class="home--new-postit--item" 
-    (click)="cardClick('#D7DF6B')"
-    [style.background-color]="postItColorEnum.GREEN"></div>
+        (click)="openNewPostModal(postItColorEnum.GREEN)"
+        [style.background-color]="postItColorEnum.GREEN"></div>
     <div class="home--new-postit--item" 
-    (click)="cardClick('#FEF496')"
-    [style.background-color]="postItColorEnum.YELLOW"></div>
+        (click)="openNewPostModal(postItColorEnum.YELLOW)"
+        [style.background-color]="postItColorEnum.YELLOW"></div>
     <div class="home--new-postit--item" 
-    (click)="cardClick('#A2C8E8')"
-    [style.background-color]="postItColorEnum.BLUE"></div>
+        (click)="openNewPostModal(postItColorEnum.BLUE)"
+        [style.background-color]="postItColorEnum.BLUE"></div>
     <div class="home--new-postit--item" 
-    (click)="cardClick('#C390BC')"
-    [style.background-color]="postItColorEnum.PURPLE"></div>
+        (click)="openNewPostModal(postItColorEnum.PURPLE)"
+        [style.background-color]="postItColorEnum.PURPLE"></div>
   </div>
 </div>
