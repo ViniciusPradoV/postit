@@ -1,0 +1,24 @@
+.postit{
+    width: 43vw;
+    height: 35vh;
+
+    background-color: brown;
+    color: #343434;
+    padding: 1rem;
+
+    h6{
+        font-size:.9rem;
+        text-align: center;
+    }
+
+    p {
+        font-size:.8rem;
+        margin-bottom: 1rem;
+
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient:block-axis; 
+        max-height: 25vh;
+        overflow: hidden;
+    }
+}

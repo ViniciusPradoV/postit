@@ -2,4 +2,30 @@
   <header>
     <img src="assets\imgs\LOGO.svg" alt="Logo">
   </header>
+  <main>
+    <ng-container *ngFor ="let post of postItArray">
+      <app-postit (postItSelected)="printPostIt($event)" [postIt]="post"></app-postit>
+    </ng-container>
+  </main>
+
+  <div class="home--new-postit">
+    <div class="home--new-postit--item" 
+    (click)="cardClick('#F77D60')"
+    [style.background-color]="postItColorEnum.RED"></div>
+    <div class="home--new-postit--item" 
+    (click)="cardClick('#FEB196')"
+    [style.background-color]="postItColorEnum.ROSE"></div>
+    <div class="home--new-postit--item" 
+    (click)="cardClick('#D7DF6B')"
+    [style.background-color]="postItColorEnum.GREEN"></div>
+    <div class="home--new-postit--item" 
+    (click)="cardClick('#FEF496')"
+    [style.background-color]="postItColorEnum.YELLOW"></div>
+    <div class="home--new-postit--item" 
+    (click)="cardClick('#A2C8E8')"
+    [style.background-color]="postItColorEnum.BLUE"></div>
+    <div class="home--new-postit--item" 
+    (click)="cardClick('#C390BC')"
+    [style.background-color]="postItColorEnum.PURPLE"></div>
+  </div>
 </div>

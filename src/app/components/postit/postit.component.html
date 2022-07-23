@@ -1,3 +1,10 @@
-<p>
-  postit works!
-</p>
+<div class="postit" [style.background-color]="postIt.color" (click)="emitPost()">
+  <header>
+    <h6>{{ postIt.title }} </h6>
+  </header>
+  <main>
+    <p>
+     {{postIt.annotation}}
+    </p>
+  </main>
+</div>
