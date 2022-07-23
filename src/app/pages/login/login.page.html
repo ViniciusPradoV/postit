@@ -10,10 +10,10 @@
       <span>E-mail</span>
       <input (keydown.enter)="password.focus()" class="input" type="text" [(ngModel)]="loginPayload.email">
       <span>Senha</span>
-      <input #password (keydown.enter)="login()" class="input" type="password" [(ngModel)]="loginPayload.password">
+      <input #password (keydown.enter)="login()" class="input" type="password" [(ngModel)]="loginPayloioniad.password">
     </div>
 
-    <ion-button class="button"  [class.disabled]="!canLogin()" (click)="login()"> 
+    <ion-button class="button"  [class.disabled]="!canLogin()" (click)="login()" routerLink="/home"> 
       {{ isLoading ? 'carregando...' : 'confirmar' }}
       <app-self-building-square-spinner 
         *ngIf="isLoading"
