@@ -32,6 +32,10 @@ const routes: Routes = [
     data: {animation: 'signupPage'}
   },
   {
+    path: 'feed/:id',
+    loadChildren: () => import('./pages/main/feed-detail/feed-detail.module').then( m => m.FeedDetailPageModule)
+  },
+  {
     path:'**',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
     data: {animation: 'login'}

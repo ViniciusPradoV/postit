@@ -41,4 +41,12 @@ export class PostitModalComponent implements OnInit {
     this.modalController.dismiss(this.postIt);
   }
 
+  public deletePostIt(): void {
+    this.modalController.dismiss({ postit: this.postIt, isDeleted: true });
+  }
+
+  public closeModal(): void {
+    this.modalController.dismiss({ isDeleted: false });
+  }
+
 }
