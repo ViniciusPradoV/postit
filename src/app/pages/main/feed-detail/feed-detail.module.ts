@@ -15,7 +15,7 @@ import { CommentModule } from 'src/app/components/comment/comment.module';
     FormsModule,
     IonicModule,
     FeedDetailPageRoutingModule,
-    CommentModule
+    CommentModule,
   ],
   declarations: [FeedDetailPage]
 })
