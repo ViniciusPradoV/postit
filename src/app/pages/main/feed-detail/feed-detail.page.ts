@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 

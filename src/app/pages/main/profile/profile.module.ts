@@ -8,12 +8,19 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import { FeedItemModule } from 'src/app/components/feed-item/feed-item.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProfilePageRoutingModule
+    ProfilePageRoutingModule,
+    MatIconModule,
+    MatMenuModule,
+    FeedItemModule
   ],
   declarations: [ProfilePage]
 })

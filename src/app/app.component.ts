@@ -1,4 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ChildrenOutletContexts, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -16,21 +18,29 @@ import { container } from './app.animations';
 export class AppComponent implements OnDestroy {
   constructor(
     private readonly router: Router,
-    private contexts: ChildrenOutletContexts
+    private contexts: ChildrenOutletContexts,
+    matIconRegistry: MatIconRegistry,
+    domSanitizer: DomSanitizer,
+
   ) {
     console.log(router);
     router.events
           .pipe(filter((event) => event instanceof NavigationEnd))
           .subscribe((route: NavigationEnd)=> {
-            console.log(route.url);
+            console.log(route.urlAfterRedirects);
 
-            if(this.routesWithNavbar.includes(route.url)) this.canShowNavbar = true;
+            if (!this.routesWithoutNavbar.includes(route.urlAfterRedirects)) {
+              this.canShowNavbar = true;
+            }
+            else {
+              this.canShowNavbar = false;
+            }
             
     })
   }
 
   public canShowNavbar: boolean =  false;
-  public routesWithNavbar: string[] = ['/home','/feed','profile'];
+  public routesWithoutNavbar: string[] = ['/login'];
 
   public routeSubscription: Subscription;
 

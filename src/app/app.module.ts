@@ -9,6 +9,8 @@ import {BrowserAnimationsModule}  from '@angular/platform-browser/animations'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent,],
@@ -16,6 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     IonicModule.forRoot(), 
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

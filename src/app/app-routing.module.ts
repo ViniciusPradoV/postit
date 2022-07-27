@@ -37,7 +37,8 @@ const routes: Routes = [
   },
   {
     path:'**',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    redirectTo: 'login',
+    pathMatch: 'full',
     data: {animation: 'login'}
   },
 ];

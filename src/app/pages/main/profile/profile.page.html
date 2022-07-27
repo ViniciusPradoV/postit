@@ -1,9 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="profile">
+  <img class="background" src="assets\imgs\quadrados.png">
+  <img class="detail" src="assets\background.svg">
+  
+    <div class="container">
+      <header>
+      <div class="container--header">
+        <ion-avatar class="user--avatar">
+          <img src="assets/imgs/quadrados.png" />
+        </ion-avatar>
+        <button class="hamburguerButton" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+        <div class="user--info">
+          <span class="user--info--name">
+            Cristian Perosa
+          </span>
+          <span class="user--info--role">
+            Fisioterapeuta Esportivo
+          </span>
+          <span class="user--info--public">
+            NOTAS PÚBLICAS
+          </span>
+        </div>
+      </header>
 
-<ion-content>
-
-</ion-content>
+        <main>
+          <ng-container *ngFor="let post of postItArray">
+            <div class="feed-item">
+              <app-feed-item [postIt]="post"></app-feed-item>
+            </div>      
+          </ng-container>
+        </main>
+    </div>
+</div>
