@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
 import { HelperService } from 'src/app/services/helper.service';
@@ -14,6 +15,7 @@ export class LoginPage {
 
   constructor(
     private readonly helper: HelperService,
+    private readonly router: Router
     ) { }
 
   public isLoading: boolean = false;
@@ -46,6 +48,8 @@ export class LoginPage {
         handler: () => console.log('Outro'),
       }
     ]);
+
+    this.router.navigateByUrl('/home');
   }
 
   public canLogin(): boolean {
