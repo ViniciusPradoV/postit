@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
+import { PreviousRouteService } from 'src/app/services/previous-route.service';
 
 @Component({
   selector: 'app-feed-detail',
@@ -13,6 +14,7 @@ export class FeedDetailPage implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
+    private previousRouterService: PreviousRouteService
   ) {
       console.log(this.activatedRoute);
       this.postItId = +this.activatedRoute.snapshot.params.id;
@@ -77,6 +79,7 @@ export class FeedDetailPage implements OnInit {
   ngOnInit() {
     console.log(this.postItId);
     this.getPostIt();
+    console.log("previousURL", this.previousRouterService.getPreviousUrl());
   }
 
   public getPostIt(): void {
@@ -86,6 +89,10 @@ export class FeedDetailPage implements OnInit {
 
   public setLikeToPostIt(): void {
     this.isLiked = !this.isLiked;
+  }
+
+  public getPreviousPage(): string {
+    return this.previousRouterService.getPreviousUrl();
   }
 
 }

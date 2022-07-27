@@ -11,9 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { FeedItemComponent } from './components/feed-item/feed-item.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent,],
+  declarations: [AppComponent, NavbarComponent],
   imports: [BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,

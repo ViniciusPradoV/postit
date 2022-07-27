@@ -38,8 +38,7 @@ export class AppComponent implements OnDestroy {
             
     })
   }
-
-  public canShowNavbar: boolean =  false;
+  public canShowNavbar: boolean =  true;
   public routesWithoutNavbar: string[] = ['/login'];
 
   public routeSubscription: Subscription;
