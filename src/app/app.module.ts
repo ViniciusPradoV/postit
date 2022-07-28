@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { FeedItemComponent } from './components/feed-item/feed-item.component';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -19,8 +20,7 @@ import { FeedItemComponent } from './components/feed-item/feed-item.component';
     IonicModule.forRoot(), 
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatIconModule
+    MaterialModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

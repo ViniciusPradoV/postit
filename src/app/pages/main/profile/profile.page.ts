@@ -49,7 +49,7 @@ export class ProfilePage implements OnInit {
       color: PostItColorEnum.PINK
     }
   ];
-
+  
   ngOnInit() {
   }
 

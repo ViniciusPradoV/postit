@@ -11,6 +11,7 @@ import { ProfilePage } from './profile.page';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { FeedItemModule } from 'src/app/components/feed-item/feed-item.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { FeedItemModule } from 'src/app/components/feed-item/feed-item.module';
     ProfilePageRoutingModule,
     MatIconModule,
     MatMenuModule,
-    FeedItemModule
+    FeedItemModule,
+    MatSidenavModule,
   ],
   declarations: [ProfilePage]
 })

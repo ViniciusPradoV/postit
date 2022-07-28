@@ -1,14 +1,18 @@
+<mat-drawer-container class="sidebar" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="over" position="end">
+  Ajustes
+  </mat-drawer>
+  <mat-drawer-content>
 <div class="profile">
-  <img class="background" src="assets\imgs\quadrados.png">
+  <div class="background"></div>
   <img class="detail" src="assets\background.svg">
-  
     <div class="container">
       <header>
       <div class="container--header">
         <ion-avatar class="user--avatar">
           <img src="assets/imgs/quadrados.png" />
         </ion-avatar>
-        <button class="hamburguerButton" mat-icon-button [matMenuTriggerFor]="menu">
+        <button class="hamburguerButton" mat-icon-button (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
@@ -34,3 +38,5 @@
         </main>
     </div>
 </div>
+</mat-drawer-content>
+</mat-drawer-container>
