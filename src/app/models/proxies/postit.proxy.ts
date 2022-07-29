@@ -7,4 +7,5 @@ export interface PostItProxy {
     annotation: string;
     color: PostItColorEnum;
     comments?: CommentProxy[];
+    isCentered?: boolean;
 }

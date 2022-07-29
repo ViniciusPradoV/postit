@@ -3,11 +3,13 @@ import { ModalController } from '@ionic/angular';
 import { PostitModalComponent } from 'src/app/modals/postit-modal/postit-modal.component';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
+import {goToCenter} from './home.animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  animations:[goToCenter]
 })
 export class HomePage implements OnInit {
 
@@ -16,44 +18,49 @@ export class HomePage implements OnInit {
     ) {}
 
   public postItColorEnum: typeof PostItColorEnum = PostItColorEnum;
- 
 
   public postItArray: PostItProxy[] = [
     {
       id: 0,
       title: 'Título do post',
       annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-     color: PostItColorEnum.RED,
+      color: PostItColorEnum.RED,
+      isCentered: false
     },
     {
       id: 1,
       title: 'Título do post',
       annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
       color: PostItColorEnum.PINK,
+      isCentered: false
     },
     {
       id: 2,
       title: 'Título do post',
       annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
       color: PostItColorEnum.BLUE,
+      isCentered: false
     },
     {
       id: 3,
       title: 'Título do post',
       annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
       color: PostItColorEnum.YELLOW,
+      isCentered: false
     },
     {
       id: 4,
       title: 'Título do post',
       annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
       color: PostItColorEnum.PURPLE,
+      isCentered: false
     },
     {
       id: 5,
       title: 'Título do post',
       annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
       color: PostItColorEnum.GREEN,
+      isCentered: false
     },
   ]
 
@@ -111,5 +118,10 @@ export class HomePage implements OnInit {
       }
     });
 
+  }
+
+  public toggleCentered(postIt: PostItProxy): void{
+    postIt.isCentered = !postIt.isCentered
+    console.log("isCentered:", postIt.isCentered);
   }
 }
