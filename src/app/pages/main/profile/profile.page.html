@@ -1,9 +1,26 @@
-<mat-drawer-container class="sidebar" [hasBackdrop]="true">
-  <mat-drawer #drawer mode="over" position="end">
-  Ajustes
-  </mat-drawer>
-  <mat-drawer-content>
 <div class="profile">
+  <ion-menu side="end" content-id="main-content" menuId="sidebar" >
+      <ion-toolbar translucent>
+        <ion-title class="sidebar--title">Ajustes</ion-title>
+      </ion-toolbar>
+    <ion-content >
+      <ion-list lines="none" class="sidebar">
+        <ion-item>
+          <ion-label>Ajustes</ion-label>
+        </ion-item>
+          <ion-item>
+            <ion-label>Ajustes</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Ajustes</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Ajustes</ion-label>
+          </ion-item>
+      </ion-list>
+      <img src="assets\imgs\LOGO.svg" alt="Logo" class="logo">
+    </ion-content>
+  </ion-menu>
   <div class="background"></div>
   <img class="detail" src="assets\background.svg">
     <div class="container">
@@ -12,8 +29,12 @@
         <ion-avatar class="user--avatar">
           <img src="assets/imgs/quadrados.png" />
         </ion-avatar>
-        <button class="hamburguerButton" mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
+        <button class="hamburguerButton" (click)="openMenu()" id="main-content">
+          <mat-icon>
+            menu
+             <ion-menu-button>
+             </ion-menu-button>
+            </mat-icon>
         </button>
       </div>
         <div class="user--info">
@@ -38,5 +59,3 @@
         </main>
     </div>
 </div>
-</mat-drawer-content>
-</mat-drawer-container>

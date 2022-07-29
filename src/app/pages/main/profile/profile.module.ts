@@ -12,6 +12,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { FeedItemModule } from 'src/app/components/feed-item/feed-item.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { LogoComponent } from 'src/app/components/logo/logo.component';
+
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatMenuModule,
     FeedItemModule,
     MatSidenavModule,
+    
   ],
-  declarations: [ProfilePage]
+  declarations: [ProfilePage, LogoComponent]
 })
 export class ProfilePageModule {}

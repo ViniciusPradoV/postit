@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,7 @@ import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(private menu: MenuController) { }
 
   public postItArray: PostItProxy[] = [
     {
@@ -49,8 +50,12 @@ export class ProfilePage implements OnInit {
       color: PostItColorEnum.PINK
     }
   ];
-  
+
   ngOnInit() {
   }
 
+ public openMenu() {
+    this.menu.enable(true, 'sidebar');
+     this.menu.open('end');
+  }
 }
