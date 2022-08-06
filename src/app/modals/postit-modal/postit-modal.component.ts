@@ -25,7 +25,7 @@ export class PostitModalComponent implements OnInit {
 
   @Input()
   public postIt: PostItPayLoad = {
-    id: 6,
+    id: 0,
     title: '',
     annotation: '',
     color: PostItColorEnum.BLUE,
