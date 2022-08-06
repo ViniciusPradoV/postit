@@ -36,6 +36,7 @@ export class HomePage {
     if (errorMessage) return this.helper.showToast(errorMessage, 5_000);
 
     this.postItArray = notes;
+    console.log(notes);
   }
 
   public consoleColor(color: string): void {

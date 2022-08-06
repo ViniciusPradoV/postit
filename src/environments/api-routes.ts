@@ -7,7 +7,7 @@ export const apiRoutes = {
       create: '/note',
       delete: '/note/{noteId}',
       update: '/note/{noteId}',
-      feed: '/note/feed?page={page}&postsPerPage={postPerPage}',
+      feed: '/note/feed/page?postsPerPage={postPerPage}',
       get: '/note/{noteId}',
       like: {
         delete:'/note/{noteId}/like',
