@@ -70,7 +70,7 @@ export class NoteService {
     });
   }
 
-  public async getFeedNotes(): Promise<AsyncResult<FeedPostItProxy[]>> {
+  public async getFeedNotes(page: number, postsPerPage: number): Promise<AsyncResult<FeedPostItProxy[]>> {
     const [success, error] = await this.http.get<FeedPostItProxy[]>(
       apiRoutes.notes.feed
     );

@@ -22,13 +22,15 @@ export class FeedPage implements OnInit {
 
   public page: number = 1;
 
+  public postsPerPage: number = 4;
+
  public async ngOnInit(): Promise<void> {
   await this.loadFeedNotes()
  }
 
  public async loadFeedNotes(): Promise<void>{
   this.isLoading = true;
-  const [postits, message] = await this.note.getFeedNotes(this.page);
+  const [postits, message] = await this.note.getFeedNotes(this.page, this.postsPerPage);
   this.isLoading = false;
 
   if(message) return this.helper.showToast(message, 5_000);
