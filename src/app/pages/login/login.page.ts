@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
 import { HttpAsyncService } from 'src/app/modules/http-async/services/http-async.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { goDown } from './login.animations';
 
@@ -17,23 +18,30 @@ export class LoginPage {
   constructor(
     private readonly helper: HelperService,
     private readonly router: Router,
-    private readonly http: HttpAsyncService
+    private readonly auth: AuthService,
     ) { }
+
+    public loginPayload: LoginPayload = {
+      email:'',
+      password:'',
+  
+    }
 
   public isLoading: boolean = false;
 
-  public loginPayload: LoginPayload = {
-    email:'',
-    password:'',
+  public isSigning: boolean = false;
 
-  }
 
   public async login(): Promise<void> {
     if(!this.canLogin()) return;
 
     this.isLoading = true;
-    console.log(this.loginPayload);
+    const [isSuccess, message] = await this.auth.login(this.loginPayload.email, this.loginPayload.password);
+    this.isLoading = false;
 
+    if (isSuccess) {
+      return void await this.router.navigate(['/home']);
+    }
 
     // Toast
     await this.helper.showToast('Carregando...');

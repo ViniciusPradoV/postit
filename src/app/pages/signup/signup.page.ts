@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RegisterPayload } from 'src/app/models/payloads/create-user.payload';
 import { SignupPayload } from 'src/app/models/payloads/signup.payload';
+import { AuthService } from 'src/app/services/auth.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { goUp } from './signup.animations';
 
@@ -11,15 +14,19 @@ import { goUp } from './signup.animations';
 })
 export class SignupPage {
 
-  constructor(private readonly helper: HelperService) { }
+  constructor(
+    private readonly helper: HelperService,
+    private readonly router: Router,
+    private readonly auth: AuthService,
 
-  public signupPayload: SignupPayload = {
-    nome: '',
+    ) { }
+
+  public registerPayload: RegisterPayload = {
+    name: '',
     email: '',
-    emailConfirmation: '',
+    confirmEmail: '',
     password: '',
-    passwordConfirmation: '',
-    
+    confirmPassword: '',
   }
 
 
@@ -36,28 +43,28 @@ export class SignupPage {
 
   public checkIsNameNotEmpty(): boolean {
 
-      return this.signupPayload.nome.length > 0 
+      return this.registerPayload.name.length > 0 
    
   }
   public checkIsEmailEqual(): boolean {
 
-    return this.signupPayload.email === this.signupPayload.emailConfirmation
+    return this.registerPayload.email === this.registerPayload.confirmEmail
 
   }
     
   public checkIsPasswordEqual(): boolean {
 
-    return this.signupPayload.password === this.signupPayload.passwordConfirmation;
+    return this.registerPayload.password === this.registerPayload.confirmPassword;
   }
 
   public checkIsEmailValid(): boolean{
 
-    return this.helper.isEmailValid(this.signupPayload.email);
+    return this.helper.isEmailValid(this.registerPayload.email);
   }
 
   public passwordHasMinLength(): boolean{
 
-    return this.signupPayload.password.length > 6
+    return this.registerPayload.password.length > 6
   }
 
   public setNameWarning(){
@@ -90,6 +97,12 @@ export class SignupPage {
     if(!this.canCreateAccount()) return;
 
     this.isLoading = true;
+    const [isSuccess, message] = await this.auth.register(this.registerPayload);
+    this.isLoading = false;
+
+    if (isSuccess)
+      return void await this.router.navigate(['/home']);
+
 
     await this.helper.showToast('Carregando...');
   }
