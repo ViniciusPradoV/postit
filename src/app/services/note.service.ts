@@ -71,7 +71,7 @@ export class NoteService {
   }
 
   public async getFeedNotes(page: number, postsPerPage: number): Promise<AsyncResult<FeedPostItProxy[]>> {
-    const url = apiRoutes.notes.feed.replace('{page}', page.toString()).replace('{postsPerPage', postsPerPage.toString())
+    const url = apiRoutes.notes.feed.replace('{page}', page.toString()).replace('{postsPerPage}', postsPerPage.toString())
 
     const [success, error] = await this.http.get<FeedPostItProxy[]>(url);
 
