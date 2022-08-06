@@ -64,7 +64,7 @@ export class SignupPage {
 
   public passwordHasMinLength(): boolean{
 
-    return this.registerPayload.password.length > 6
+    return this.registerPayload.password.length >= 6
   }
 
   public setNameWarning(){

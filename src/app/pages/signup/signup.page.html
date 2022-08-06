@@ -44,7 +44,7 @@
       type="password" 
       [(ngModel)]="registerPayload.password"
       (ngModelChange)="setPasswordWarning()">
-      <span class="warning" [class.hidden]="isPasswordMinLen"> Senha necessita ao menos 7 dígitos! </span>
+      <span class="warning" [class.hidden]="isPasswordMinLen"> Senha necessita ao menos 6 dígitos! </span>
 
       <span class="field">Confirme a senha*</span>
       <input #passwordAgain 
