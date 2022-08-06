@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payloads/login.payload';
+import { HttpAsyncService } from 'src/app/modules/http-async/services/http-async.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { goDown } from './login.animations';
 
@@ -15,7 +16,8 @@ export class LoginPage {
 
   constructor(
     private readonly helper: HelperService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly http: HttpAsyncService
     ) { }
 
   public isLoading: boolean = false;

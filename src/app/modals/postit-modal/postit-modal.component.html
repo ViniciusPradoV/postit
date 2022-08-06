@@ -33,5 +33,7 @@
 
   <footer>
     <span (click)="savePostIt()">Colar no mural</span>
+
+    <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
   </footer>
 </div>

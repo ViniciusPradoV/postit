@@ -13,6 +13,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { FeedItemComponent } from './components/feed-item/feed-item.component';
 import { MaterialModule } from '../material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpAsyncModule } from './modules/http-async/http-async.module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -20,7 +22,9 @@ import { MaterialModule } from '../material.module';
     IonicModule.forRoot(), 
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpAsyncModule,
+    HttpClientModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

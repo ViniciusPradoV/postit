@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'https://liga-bootcamp-postit-api.herokuapp.com',
+  keys: {
+    token: '@post-it/token',
+    user: '@post-it/user',
+  },
 };
 
 /*
