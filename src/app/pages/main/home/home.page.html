@@ -8,8 +8,7 @@
     <ng-container *ngFor="let post of postItArray">
       <app-postit (postItSelected)="printPostIt($event)" 
                   [postIt]="post"
-                  (click)="toggleCentered(post); openPostModal(post)"
-                  [@goToCenter]="post.isCentered ? 'enter' : 'leave' "></app-postit>
+                  (click)="openPostModal(post)"></app-postit>
     </ng-container>
   </main>
 

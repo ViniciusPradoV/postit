@@ -19,6 +19,6 @@ import { PostItModalModule } from 'src/app/modals/postit-modal/postit-modal.modu
     PostItModule,
     PostItModalModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
 })
 export class HomePageModule {}

@@ -5,13 +5,15 @@ import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 import { HelperService } from '../../../services/helper.service';
 import { NoteService } from '../../../services/note.service';
+import { goToCenter } from './home.animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  animations: [goToCenter]
 })
-export class HomePage {
+export class HomePage implements OnInit {
   constructor(
     private readonly modalController: ModalController,
     private readonly note: NoteService,
@@ -24,8 +26,8 @@ export class HomePage {
 
   public postItColorEnum: typeof PostItColorEnum = PostItColorEnum;
 
-  public async ionViewDidEnter(): Promise<void> {
-    await this.loadMyNotes();
+ public async ngOnInit(): Promise<void> {
+    await this.loadMyNotes()
   }
 
   public async loadMyNotes(): Promise<void> {
