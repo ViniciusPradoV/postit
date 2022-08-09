@@ -27,6 +27,6 @@ import { LogoComponent } from 'src/app/components/logo/logo.component';
     MatSidenavModule,
     
   ],
-  declarations: [ProfilePage, LogoComponent]
+  declarations: [ProfilePage]
 })
 export class ProfilePageModule {}

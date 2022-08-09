@@ -12,7 +12,7 @@ export const authenticatedRouteParams = {
 export const unAuthenticatedRouteParams = {
   canActivate: [AuthenticationGuard],
   data: {
-    unprotectedRoute: true,
+    unprotectedRoute: false,
     routeToRedirect: '/home'
   }
 }
@@ -27,28 +27,34 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    ...unAuthenticatedRouteParams,
     data: {animation: 'loginPage'}
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/main/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/main/home/home.module').then( m => m.HomePageModule),
+    ...authenticatedRouteParams,
   },
   {
     path: 'feed',
-    loadChildren: () => import('./pages/main/feed/feed.module').then( m => m.FeedPageModule)
+    loadChildren: () => import('./pages/main/feed/feed.module').then( m => m.FeedPageModule),
+    ...authenticatedRouteParams,
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/main/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/main/profile/profile.module').then( m => m.ProfilePageModule),
+    ...authenticatedRouteParams
   },
   {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule),
+    ...unAuthenticatedRouteParams,
     data: {animation: 'signupPage'}
   },
   {
     path: 'feed/:id',
-    loadChildren: () => import('./pages/main/feed-detail/feed-detail.module').then( m => m.FeedDetailPageModule)
+    loadChildren: () => import('./pages/main/feed-detail/feed-detail.module').then( m => m.FeedDetailPageModule),
+    ...authenticatedRouteParams,
   },
   {
     path:'**',

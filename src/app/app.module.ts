@@ -15,6 +15,7 @@ import { FeedItemComponent } from './components/feed-item/feed-item.component';
 import { MaterialModule } from '../material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpAsyncModule } from './modules/http-async/http-async.module';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -25,6 +26,7 @@ import { HttpAsyncModule } from './modules/http-async/http-async.module';
     MaterialModule,
     HttpAsyncModule,
     HttpClientModule,
+  
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

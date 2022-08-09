@@ -40,7 +40,8 @@ export class LoginPage {
     this.isLoading = false;
 
     if (isSuccess) {
-      return;
+      await this.setUser();
+      return void await this.router.navigate(['/home']);;
     }
 
        // alert
@@ -52,7 +53,9 @@ export class LoginPage {
 
     const [isSuccess, message] = await this.auth.setUser();
 
-    if (isSuccess) return void await this.router.navigate(['/home']);
+    if (isSuccess){
+        return;
+       }
 
     await this.helper.showToast(message,5_000);
 
