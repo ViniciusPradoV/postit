@@ -16,24 +16,21 @@ export class HelperService {
     ){}
 
 
-    public async showToast(message: string, duration?: number): Promise<void> {
-
-        const toast = await this.toastController.create({  
-            message: message,
-            duration: duration,
-          });
-      
-          toast.present();
-    }
-
-    public async showAlert(header: string, buttons: (AlertButton | string)[]): Promise<void>{
-
+    public async showToast(message: string, durationInMilliseconds: number = 2000): Promise<void> {
+        const toast = await this.toastController.create({
+          message: message,
+          duration: durationInMilliseconds,
+        });
+        toast.present();
+      }
+    
+      public async showAlert(header: string, buttons: (AlertButton | string)[]): Promise<void> {
         const alert = await this.alertController.create({
-            header: header,
-            buttons: buttons,
-          });
-          alert.present()
-    }
+          header,
+          buttons,
+        });
+        alert.present();
+      }
 
     public isEmailValid(email: string): boolean {
 

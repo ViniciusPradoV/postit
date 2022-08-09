@@ -4,6 +4,7 @@ export const apiRoutes = {
     },
     notes: {
       me: '/note/me',
+      myFeed: '/note/myFeed',
       create: '/note',
       delete: '/note/{noteId}',
       update: '/note/{noteId}',
@@ -11,7 +12,7 @@ export const apiRoutes = {
       get: '/note/{noteId}',
       like: {
         delete:'/note/{noteId}/like',
-        create: '/note/{notedId}/like',
+        create: '/note/{noteId}/like',
       },
       comment: {
         create: '/note/{noteId}/comment',
@@ -19,6 +20,7 @@ export const apiRoutes = {
     },
     users: {
       create: '/user',
+      me: '/user/me'
     },
     
   } as const;

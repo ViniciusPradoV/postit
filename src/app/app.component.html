@@ -1,6 +1,4 @@
-<ion-app>
-    <div [@routeAnimations]="getRouteAnimationData()">
-      <router-outlet></router-outlet>
-    </div>
-  <app-navbar *ngIf="canShowNavbar" ></app-navbar>
-</ion-app>
+<div [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet></router-outlet>
+  </div>
+<app-navbar *ngIf="canShowNavbar" ></app-navbar>

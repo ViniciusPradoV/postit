@@ -1,11 +1,11 @@
 <div class="feed-item" [style.background-color]="postIt.color">
   <header>
     <ion-avatar class="user--avatar">
-      <img [src]="postIt.user?.imageUrl || 'assets/imgs/user/user-example-1.jpg'" />
+      <img [src]="postIt.user?.imageUrl || 'assets/imgs/quadrados.png'" />
     </ion-avatar>
     <div class="user--info">
       <span class="user--info--name">
-        {{ postIt.user?.name }}
+        {{ postIt.user?.name}}
       </span>
       <span class="user--info--role">
         {{ postIt.user?.role }}
@@ -25,11 +25,11 @@
   </main>
   <div class="footer">
     <div class="comment--section">
-      <input type="text" placeholder="Inserir comentário">
-      <button type="button"> Publicar </button>
+      <input [(ngModel)]="commentText"  type="text" placeholder="Inserir comentário">
+      <button type="button" (click)="sendComment()"> Publicar </button>
     </div>
     <div class="actions--section">
-      <img src="assets/imgs/postit_comment.svg">
+      <img src="assets\icon\postit_comment.svg">
 
       <svg class="heart"
           (click)="setLikeToPostIt()"

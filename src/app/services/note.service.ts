@@ -70,6 +70,17 @@ export class NoteService {
     });
   }
 
+  public async getMyFeedNotes(): Promise<AsyncResult<FeedPostItProxy[]>> {
+
+    const [success, error] = await this.http.get<FeedPostItProxy[]>(
+      apiRoutes.notes.myFeed
+    );
+
+    if (error) return [[], error.error.message];
+
+    return [success];
+  }
+
   public async getFeedNotes(page: number, postsPerPage: number): Promise<AsyncResult<FeedPostItProxy[]>> {
     const url = apiRoutes.notes.feed.replace('{page}', page.toString()).replace('{postsPerPage}', postsPerPage.toString())
 
@@ -83,6 +94,7 @@ export class NoteService {
   public async setLikeOnPostit(
     postit: FeedPostItProxy
   ): Promise<AsyncResult<boolean>> {
+    console.log(postit.user.name)
     const url = postit.hasLiked
       ? apiRoutes.notes.like.delete.replace('{noteId}', postit.id.toString())
       : apiRoutes.notes.like.create.replace('{noteId}', postit.id.toString());

@@ -4,6 +4,9 @@ import { filter } from 'rxjs/operators';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 import { Location } from '@angular/common';
+import { HelperService } from 'src/app/services/helper.service';
+import { NoteService } from 'src/app/services/note.service';
+import { FeedPostItProxy } from 'src/app/models/proxies/feed-postit.proxy';
 
 @Component({
   selector: 'app-feed-detail',
@@ -14,80 +17,61 @@ export class FeedDetailPage implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private readonly router: Router,
+    private readonly helper: HelperService,
+    private readonly note: NoteService
   ) {
-      console.log(this.activatedRoute);
       this.postItId = +this.activatedRoute.snapshot.params.id;
    }
 
-  public postItArray: PostItProxy[] = [
-    {
-      id: 0,
-      title: 'Título do post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-     color: PostItColorEnum.RED,
-     comments: [
-      {
-      comment: 'Show. Amei as dicas!!! <3',
-     },
-     {
-      comment: 'Show. Amei as dicas!!! <3',
-     },
-     {
-      comment: 'Show. Amei as dicas!!! <3',
-     },
-    ]
-    },
-    {
-      id: 1,
-      title: 'Título do post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-      color: PostItColorEnum.PINK,
-    },
-    {
-      id: 2,
-      title: 'Título do post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-      color: PostItColorEnum.BLUE,
-    },
-    {
-      id: 3,
-      title: 'Título do post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-      color: PostItColorEnum.YELLOW,
-    },
-    {
-      id: 4,
-      title: 'Título do post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-      color: PostItColorEnum.PURPLE,
-    },
-    {
-      id: 5,
-      title: 'Título do post',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla dui augue, et rutrum turpis venenatis a. Aenean sodales tincidunt vestibulum. Duis justo felis, sollicitudin sit amet dictum eu, dignissim id est. In enim elit, pulvinar ac condimentum quis, sodales tempus nunc. Mauris id odio id lectus pharetra vestibulum. Duis ultrices nunc non ante vulputate, non aliquam lorem malesuada. Curabitur egestas lacus eget nulla eleifend auctor. Duis tincidunt id lectus rhoncus imperdiet. Mauris eu consequat metus. Ut viverra purus id mi aliquam, ultricies facilisis eros vulputate.',
-      color: PostItColorEnum.GREEN,
-    },
-  ]
-
-  public postIt: PostItProxy;
+  public postIt: FeedPostItProxy;
+  public isLoading: boolean = false;
+  public commentText: string = '';
 
   private postItId: number = 0;
 
-  public isLiked: boolean = false;
-
-  ngOnInit() {
-    console.log(this.postItId);
+  public ngOnInit(): void {
     this.getPostIt();
   }
 
-  public getPostIt(): void {
-    console.log(this.postItId);
-    this.postIt = this.postItArray.find(post => post.id === this.postItId);
+  public async getPostIt(): Promise<void> {
+    const [postit, message] = await this.note.get(this.postItId);
+
+    if (message) {
+      this.helper.showToast(message, 5_000);
+
+      return void this.router.navigateByUrl('/feed');
+    }
+
+    this.commentText = '';
+
+    this.postIt = postit;
   }
 
-  public setLikeToPostIt(): void {
-    this.isLiked = !this.isLiked;
+  public async setLikeToPostIt(): Promise<void> {
+    this.isLoading = true;
+    const [, errorMessage] = await this.note.setLikeOnPostit(this.postIt);
+    this.isLoading = false;
+
+    if (errorMessage)
+      return this.helper.showToast(errorMessage, 5_000);
+
+    this.postIt.hasLiked = !this.postIt.hasLiked;
+  }
+
+  public async sendComment(): Promise<void> {
+    this.isLoading = true;
+    const [comment, errorMessage] = await this.note.sendComment(this.postIt.id, this.commentText);
+    this.isLoading = false;
+
+    if (errorMessage)
+      return this.helper.showToast(errorMessage, 5_000);
+
+    comment.user = this.postIt.user;
+
+    this.commentText = '';
+    this.postIt.comments.push(comment);
   }
 
   public toPreviousPage(): void {

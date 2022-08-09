@@ -20,6 +20,8 @@ export class FeedItemComponent {
 
   public isLoading: boolean = false;
 
+  public commentText: string = '';
+
   public async setLikeToPostIt(): Promise<void> {
     this.isLoading = true;
     const [, errorMessage] = await this.note.setLikeOnPostit(this.postIt);
@@ -29,5 +31,21 @@ export class FeedItemComponent {
       return this.helper.showToast(errorMessage, 5_000);
 
     this.postIt.hasLiked = !this.postIt.hasLiked;
+  }
+
+  public async sendComment(): Promise<void> {
+    this.isLoading = true;
+    console.log(this.commentText);
+    const [comment, errorMessage] = await this.note.sendComment(this.postIt.id, this.commentText);
+    this.isLoading = false;
+
+    if (errorMessage)
+      return this.helper.showToast(errorMessage, 5_000);
+
+    comment.user = this.postIt.user;
+
+    this.commentText = '';
+   
+    this.postIt.comments.push(comment);
   }
 }

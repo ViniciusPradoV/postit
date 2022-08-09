@@ -1,6 +1,21 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { container } from './app.animations';
+import { AuthenticationGuard } from './guards/authentication.guard';
+
+export const authenticatedRouteParams = {
+  canActivate: [AuthenticationGuard],
+  data: {
+    protectedRoute: true,
+    routeToRedirect: '/login'
+  }
+}
+export const unAuthenticatedRouteParams = {
+  canActivate: [AuthenticationGuard],
+  data: {
+    unprotectedRoute: true,
+    routeToRedirect: '/home'
+  }
+}
 
 const routes: Routes = [
   {

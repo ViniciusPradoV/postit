@@ -6,16 +6,16 @@
     <ion-content >
       <ion-list lines="none" class="sidebar">
         <ion-item>
-          <ion-label>Ajustes</ion-label>
+          <ion-label (click)="clickConfigList(1)">Ajustes</ion-label>
         </ion-item>
           <ion-item>
-            <ion-label>Ajustes</ion-label>
+            <ion-label (click)="clickConfigList(2)">Ajustes</ion-label>
           </ion-item>
           <ion-item>
-            <ion-label>Ajustes</ion-label>
+            <ion-label (click)="clickConfigList(3)">About Us</ion-label>
           </ion-item>
           <ion-item>
-            <ion-label>Ajustes</ion-label>
+            <ion-label (click)="clickConfigList(4)">Sair</ion-label>
           </ion-item>
       </ion-list>
       <img src="assets\imgs\LOGO.svg" alt="Logo" class="logo">
@@ -27,7 +27,7 @@
       <header>
       <div class="container--header">
         <ion-avatar class="user--avatar">
-          <img src="assets/imgs/quadrados.png" />
+          <img [src]="myUser?.imageUrl || 'assets/imgs/quadrados.png'" alt="" />
         </ion-avatar>
         <button class="hamburguerButton" (click)="openMenu()" id="main-content">
           <mat-icon>
@@ -39,10 +39,10 @@
       </div>
         <div class="user--info">
           <span class="user--info--name">
-            Cristian Perosa
+            {{myUser?.name}}
           </span>
           <span class="user--info--role">
-            Fisioterapeuta Esportivo
+            {{myUser?.role}}
           </span>
           <span class="user--info--public">
             NOTAS PÚBLICAS
@@ -51,7 +51,7 @@
       </header>
 
         <main>
-          <ng-container *ngFor="let post of postItArray">
+          <ng-container *ngFor="let post of myPostsits">
             <div class="feed-item">
               <app-feed-item [postIt]="post"></app-feed-item>
             </div>      

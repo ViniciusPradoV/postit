@@ -38,8 +38,25 @@ export class AuthService {
       return [false, error.error.message];
     }
 
+    return this.login(payload.email, payload.password);
+  }
+
+  public getUserTokenFromStorage(): string {
+    return localStorage.getItem(environment.keys.token);
+  }
+
+  public async setUser(): Promise<AsyncResult<boolean>>{
+
+    const [user, userError] = await this.http.get<UserProxy>(apiRoutes.users.me);
+
+    console.log(user)
+
+    if (userError) {
+      return [false, userError.error.message];
+    }
+
     localStorage.setItem(environment.keys.user, JSON.stringify(user));
 
-    return this.login(payload.email, payload.password);
+    return [true, `Usuário salvo no localStorage!`];
   }
 }

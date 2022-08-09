@@ -40,27 +40,24 @@ export class LoginPage {
     this.isLoading = false;
 
     if (isSuccess) {
-      return void await this.router.navigate(['/home']);
+      return;
     }
 
-    // Toast
-    await this.helper.showToast('Carregando...');
-    
+       // alert
+       await this.helper.showToast(message, 5_000);
 
-    // Alert
-    await this.helper.showAlert("Hello World", [
-      {
-        text: 'OK',
-        handler: () => console.log('Ok!'),
-      },
-      {
-        text: 'Outro',
-        handler: () => console.log('Outro'),
-      }
-    ]);
-
-    this.router.navigateByUrl('/home');
   }
+
+  public async setUser(): Promise<void>{
+
+    const [isSuccess, message] = await this.auth.setUser();
+
+    if (isSuccess) return void await this.router.navigate(['/home']);
+
+    await this.helper.showToast(message,5_000);
+
+  }
+  
 
   public canLogin(): boolean {
     const emailIsValid = this.helper.isEmailValid(this.loginPayload.email);
