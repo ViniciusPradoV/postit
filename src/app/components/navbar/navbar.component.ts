@@ -17,8 +17,6 @@ export class NavbarComponent {
     router.events
           .pipe(filter((event) => event instanceof NavigationEnd))
           .subscribe((route: NavigationEnd)=> {
-            console.log(route.url);
-
                   
           if(this.router.url.includes('/feed'))
           this.currentNavbar = NavbarEnum.FEED;

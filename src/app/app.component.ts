@@ -23,11 +23,9 @@ export class AppComponent implements OnDestroy {
     domSanitizer: DomSanitizer,
 
   ) {
-    console.log(router);
     router.events
           .pipe(filter((event) => event instanceof NavigationEnd))
           .subscribe((route: NavigationEnd)=> {
-            console.log(route.urlAfterRedirects);
 
             if (!this.routesWithoutNavbar.includes(route.urlAfterRedirects)) {
               this.canShowNavbar = true;

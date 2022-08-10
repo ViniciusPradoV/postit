@@ -12,7 +12,7 @@ export const authenticatedRouteParams = {
 export const unAuthenticatedRouteParams = {
   canActivate: [AuthenticationGuard],
   data: {
-    unprotectedRoute: false,
+    unprotectedRoute: true,
     routeToRedirect: '/home'
   }
 }
@@ -27,8 +27,8 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
-    ...unAuthenticatedRouteParams,
-    data: {animation: 'loginPage'}
+    canActivate: unAuthenticatedRouteParams.canActivate, 
+    data: {animation: 'loginPage', ...unAuthenticatedRouteParams.data}
   },
   {
     path: 'home',
@@ -48,8 +48,8 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule),
-    ...unAuthenticatedRouteParams,
-    data: {animation: 'signupPage'}
+    canActivate: unAuthenticatedRouteParams.canActivate,
+    data: {animation: 'signupPage', ...unAuthenticatedRouteParams.data}
   },
   {
     path: 'feed/:id',

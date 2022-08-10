@@ -69,7 +69,6 @@ export class ProfilePage implements OnInit {
     }
 
     this.myPostsits = [...this.myPostsits, ...postIts]
-    console.log(this.myPostsits)
     this.myUser = success;
   }
 
