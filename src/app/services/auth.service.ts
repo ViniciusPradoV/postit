@@ -52,8 +52,6 @@ export class AuthService {
 
     var [user, userError] = await this.http.get<UserProxy>(apiRoutes.users.me);
 
-    console.log(user);
-
     if (userError) {
       return [null, userError.error.message];
     }
@@ -67,8 +65,6 @@ export class AuthService {
   public async setUser(): Promise<AsyncResult<boolean>>{
 
     const [user, userError] = await this.http.get<UserProxy>(apiRoutes.users.me);
-
-    console.log(user)
 
     if (userError) {
       return [false, userError.error.message];

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 import { MenuController } from '@ionic/angular';
@@ -13,6 +13,8 @@ import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { concatMap, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProfilePicPayload} from 'src/app/models/payloads/update-user.payload'
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-profile',
@@ -42,7 +44,9 @@ export class ProfilePage implements OnInit {
   }
 
   @Input()
-  public myPostsits: PostItProxy[] = [];
+  public myPostsits: FeedPostItProxy[] = [];
+
+  eventsSubject: Subject<UserProxy> = new Subject<UserProxy>();
 
   public isSettingsEnabled: boolean = false;
 
@@ -79,8 +83,6 @@ export class ProfilePage implements OnInit {
     this.myPostsits = [...this.myPostsits, ...postIts]
     this.myUser = success;
 
-    console.log(this.myUser)
-
     return success;
   }
 
@@ -113,12 +115,12 @@ export class ProfilePage implements OnInit {
       
      switchMap(
        async (picURL) => {
-        this.profilePicPayLoad.imageUrl = picURL
-        const [success, error] = await this.auth.updateProfileData(this.myUser, this.profilePicPayLoad)
-        if(error) return this.helper.showToast(error, 5_000)
+        this.profilePicPayLoad.imageUrl = picURL;
+        const [success, error] = await this.auth.updateProfileData(this.myUser, this.profilePicPayLoad);
+        if(error) return this.helper.showToast(error, 5_000);
         this.myUser = success;
-        
-        this.auth.setUser()
+        this.eventsSubject.next(success);
+        this.auth.setUser();
       }
      )
     ).subscribe()

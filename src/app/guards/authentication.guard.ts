@@ -33,9 +33,7 @@ export class AuthenticationGuard implements CanActivate {
     if (hasToken && protectedRoute)
     {
       var user = localStorage.getItem(environment.keys.user)
-      console.log(user)
       if(user == null){
-      console.log(user)
       const [userStringfied, error] = await this.authService.getMe();
       localStorage.setItem(environment.keys.user, userStringfied)
       }
