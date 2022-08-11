@@ -6,6 +6,7 @@ import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
 import { HelperService } from '../../../services/helper.service';
 import { NoteService } from '../../../services/note.service';
 import { goToCenter } from './home.animations';
+import { ref, Storage, getDownloadURL, uploadBytes } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomePage implements OnInit {
   constructor(
     private readonly modalController: ModalController,
     private readonly note: NoteService,
-    private readonly helper: HelperService
+    private readonly helper: HelperService,
   ) {}
 
   public isLoading: boolean = false;

@@ -6,10 +6,15 @@
     <ion-content >
       <ion-list lines="none" class="sidebar">
         <ion-item>
-          <ion-label (click)="clickConfigList(1)">Ajustes</ion-label>
+          <ion-label (click)="clickConfigList(1)">Editar perfil</ion-label>
         </ion-item>
           <ion-item>
-            <ion-label (click)="clickConfigList(2)">Ajustes</ion-label>
+            <ion-label (click)="clickConfigList(2)">
+              <input type="file" (change)="uploadProfilePic($event)" accept="*.png.jpg" class="uploadProfilePic"/>
+                <p class="fakefile">
+              Selecionar uma imagem de perfil
+                </p>
+            </ion-label>
           </ion-item>
           <ion-item>
             <ion-label (click)="clickConfigList(3)">About Us</ion-label>

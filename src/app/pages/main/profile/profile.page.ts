@@ -9,6 +9,10 @@ import { FeedPostItProxy } from 'src/app/models/proxies/feed-postit.proxy';
 import { ProfileSettingsEnum } from 'src/app/models/enums/profile-settings.enum';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ImageUploadService } from 'src/app/services/image-upload.service';
+import { concatMap, switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
+import { ProfilePicPayload} from 'src/app/models/payloads/update-user.payload'
 
 @Component({
   selector: 'app-profile',
@@ -23,11 +27,19 @@ export class ProfilePage implements OnInit {
     private router: Router,
     private readonly noteService: NoteService,
     private readonly helper: HelperService,
+    private readonly imageUploadService: ImageUploadService,
+    private readonly auth: AuthService
     ) { }
 
   //#endregion
 
   //#region Public Properties
+
+  public profilePicPayLoad: ProfilePicPayload = {
+    name: null,
+    role: null,
+    imageUrl: '',
+  }
 
   @Input()
   public myPostsits: PostItProxy[] = [];
@@ -39,10 +51,6 @@ export class ProfilePage implements OnInit {
   public loading: boolean = false;
 
   public profileSettingsEnum: typeof ProfileSettingsEnum = ProfileSettingsEnum;
-
-  public page: number = 1;
-
-  public postsPerPage: number = 4;
 
   //#endregion
 
@@ -70,13 +78,11 @@ export class ProfilePage implements OnInit {
 
     this.myPostsits = [...this.myPostsits, ...postIts]
     this.myUser = success;
-  }
 
-  public async nextPage(): Promise<void> {
-    this.page++;
-    this.loadMyFeedNotes();
-    }
- 
+    console.log(this.myUser)
+
+    return success;
+  }
 
  public openMenu() {
     this.menu.enable(true, 'sidebar');
@@ -87,6 +93,10 @@ export class ProfilePage implements OnInit {
 
     this.openMenu()
 
+    if(selectedSettings === ProfileSettingsEnum.EDIT_PROFILE_PICTURE){
+      
+    }
+
     if(selectedSettings === ProfileSettingsEnum.EXIT){
       localStorage.clear();
       return void await this.router.navigate(['/login']);
@@ -96,4 +106,22 @@ export class ProfilePage implements OnInit {
       return void this.helper.showToast('Projeto Bootcamp LIGA - 2022', 5_000)
     }
   }
+
+  public async uploadProfilePic(event: any){
+
+    this.imageUploadService.uploadImage(event.target.files[0], `images/profile/${this.myUser.id}`).pipe(
+      
+     switchMap(
+       async (picURL) => {
+        this.profilePicPayLoad.imageUrl = picURL
+        const [success, error] = await this.auth.updateProfileData(this.myUser, this.profilePicPayLoad)
+        if(error) return this.helper.showToast(error, 5_000)
+        this.myUser = success;
+        
+        this.auth.setUser()
+      }
+     )
+    ).subscribe()
+  }
+
 }

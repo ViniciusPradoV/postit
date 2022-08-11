@@ -16,6 +16,13 @@ import { MaterialModule } from '../material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpAsyncModule } from './modules/http-async/http-async.module';
 import { LogoComponent } from './components/logo/logo.component';
+import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment.prod';
+import { provideStorage } from '@angular/fire/storage';
+import { getStorage } from 'firebase/storage';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -26,6 +33,8 @@ import { LogoComponent } from './components/logo/logo.component';
     MaterialModule,
     HttpAsyncModule,
     HttpClientModule,
+    provideFirebaseApp(()=>initializeApp(environment.firebase)),
+    provideStorage(()=>getStorage())
   
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

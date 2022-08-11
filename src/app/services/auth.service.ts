@@ -6,6 +6,9 @@ import { environment } from '../../environments/environment.prod';
 import { CreateUserPayload } from '../models/payloads/create-user.payload';
 import { AsyncResult } from '../models/interfaces/async-result';
 import { UserProxy } from '../models/proxies/user.proxy';
+import { of } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
+import { ProfilePicPayload, UpdateUserPayload } from '../models/payloads/update-user.payload';
 
 @Injectable({
   providedIn: 'root',
@@ -59,4 +62,20 @@ export class AuthService {
 
     return [true, `Usuário salvo no localStorage!`];
   }
+
+  public getUserFromStorage(): string{
+    return localStorage.getItem(environment.keys.user);
+  }
+
+  public async updateProfileData(user: UserProxy, payload: ProfilePicPayload): Promise<AsyncResult<UserProxy>> {
+
+    const [success, error] = await this.http.put<UserProxy>(
+      apiRoutes.users.update.replace('{userId}', user.id.toString()), payload
+    );
+
+    if (error) return [null, error.error.message];
+
+    return [success];
+  }
+
 }

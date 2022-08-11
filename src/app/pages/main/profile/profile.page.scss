@@ -32,6 +32,29 @@
         margin-right: 5vw;
     }
 
+    .uploadProfilePic{
+        position: relative;
+        border: 0;
+        padding-bottom: 0;
+        padding-top: 0;
+        opacity: 0;
+        z-index: 2;
+    }
+
+    .fakefile{
+        position: absolute;
+        top: 0.7rem;
+        left: 30px;
+
+        text-align: end;
+        text-size-adjust:initial;
+        color: #707070;
+        font-weight:bold;
+        font-style: italic;
+
+        z-index: 1;
+    }
+
     .logo {
         width: 20%;
         margin-top: 60vh;
