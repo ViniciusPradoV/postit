@@ -48,12 +48,16 @@ export class SignupPage {
   }
   public checkIsEmailEqual(): boolean {
 
+    console.log(this.registerPayload.confirmEmail)
+
+    if(this.registerPayload.confirmEmail.length === 0 || null) return true;
     return this.registerPayload.email === this.registerPayload.confirmEmail
 
   }
     
   public checkIsPasswordEqual(): boolean {
 
+    if(this.registerPayload.confirmPassword.length === 0 || null) return true;
     return this.registerPayload.password === this.registerPayload.confirmPassword;
   }
 
