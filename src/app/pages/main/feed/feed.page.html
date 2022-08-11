@@ -8,7 +8,7 @@
   <main>
     <ng-container *ngFor="let post of postItArray">
       <div class="feed-item">
-        <app-feed-item [postIt]="post"></app-feed-item>
+        <app-feed-item  [events]="eventsSubject.asObservable()" [postIt]="post"></app-feed-item>
       </div>      
     </ng-container>
   </main>

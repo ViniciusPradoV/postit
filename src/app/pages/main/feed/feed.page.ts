@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { PostItColorEnum } from 'src/app/models/enums/postit-color.enum';
 import { PostItProxy } from 'src/app/models/proxies/postit.proxy';
+import { UserProxy } from 'src/app/models/proxies/user.proxy';
 import { HelperService } from 'src/app/services/helper.service';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -23,6 +27,9 @@ export class FeedPage implements OnInit {
   public page: number = 1;
 
   public postsPerPage: number = 4;
+  
+  eventsSubject: Subject<UserProxy> = new Subject<UserProxy>();
+
 
  public async ngOnInit(): Promise<void> {
   await this.loadFeedNotes()
