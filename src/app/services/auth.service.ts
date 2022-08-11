@@ -48,6 +48,22 @@ export class AuthService {
     return localStorage.getItem(environment.keys.token);
   }
 
+  public async getMe(): Promise<AsyncResult<string>>{
+
+    var [user, userError] = await this.http.get<UserProxy>(apiRoutes.users.me);
+
+    console.log(user);
+
+    if (userError) {
+      return [null, userError.error.message];
+    }
+
+    const stringfiedUser = JSON.stringify(user)
+    
+    return [stringfiedUser, `Usuário retornado do banco!`];
+
+  }
+
   public async setUser(): Promise<AsyncResult<boolean>>{
 
     const [user, userError] = await this.http.get<UserProxy>(apiRoutes.users.me);
