@@ -1,4 +1,12 @@
 ion-app {
   background-color: white;
 
+
+}
+
+@media only screen and (orientation:landscape) {
+  ion-app {
+    height: 100vw;
+    transform: rotate(90deg);
+  }
 }
